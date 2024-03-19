@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lịch làm việc</title>
+    <style>
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        text-align: center;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      td:hover {
+        cursor: pointer;
+      }
+      .selected {
+        background-color: #a3e8ff; /* Màu xanh cho ô đã chọn */
+      }
+      @media only screen and (max-width: 600px) {
+        /* Điều chỉnh kích thước của các ô trên điện thoại di động */
+        th,
+        td {
+          padding: 5px;
+          font-size: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>Thứ hai</th>
+          <th>Thứ ba</th>
+          <th>Thứ tư</th>
+          <th>Thứ năm</th>
+          <th>Thứ sáu</th>
+          <th>Thứ bảy</th>
+          <th>Chủ nhật</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td onclick="toggleCell(this)">Ca 1</td>
+          <td onclick="toggleCell(this)">Ca 1</td>
+          <td onclick="toggleCell(this)">Ca 1</td>
+          <td onclick="toggleCell(this)">Ca 1</td>
+          <td onclick="toggleCell(this)">Ca 1</td>
+          <td onclick="toggleCell(this)">Ca 1</td>
+          <td onclick="toggleCell(this)">Ca 1</td>
+        </tr>
+        <tr>
+          <td onclick="toggleCell(this)">Ca 2</td>
+          <td onclick="toggleCell(this)">Ca 2</td>
+          <td onclick="toggleCell(this)">Ca 2</td>
+          <td onclick="toggleCell(this)">Ca 2</td>
+          <td onclick="toggleCell(this)">Ca 2</td>
+          <td onclick="toggleCell(this)">Ca 2</td>
+          <td onclick="toggleCell(this)">Ca 2</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <script>
+      function toggleCell(cell) {
+        // Nếu ô đã được chọn, hủy bỏ lựa chọn
+        if (cell.classList.contains("selected")) {
+          cell.classList.remove("selected");
+        } else {
+          // Nếu ô chưa được chọn, hủy bỏ lựa chọn trước đó trong cùng một cột
+          var cellsInColumn = document.querySelectorAll(
+            "td:nth-child(" + (cell.cellIndex + 1) + ").selected"
+          );
+          cellsInColumn.forEach(function (selectedCell) {
+            selectedCell.classList.remove("selected");
+          });
+          // Đánh dấu ô được chọn hiện tại
+          cell.classList.add("selected");
+        }
+      }
+    </script>
+  </body>
+</html>
